@@ -21,7 +21,7 @@ export function setCharTimeline(
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: ".about-section",
-      start: "center 55%",
+      start: window.innerWidth > 1024 ? "center 55%" : "top bottom", // INSTANT ON MOBILE
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
@@ -30,18 +30,19 @@ export function setCharTimeline(
   const tl3 = gsap.timeline({
     scrollTrigger: {
       trigger: ".whatIDO",
-      start: "top top",
+      start: window.innerWidth > 1024 ? "top top" : "top bottom", // INSTANT ON MOBILE
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
     },
   });
   let screenLight: any, monitor: any;
-  character?.children.forEach((object: any) => {
+  character?.traverse((object: any) => {
     if (object.name === "Plane004") {
+      object.position.y = -2; // LOWERED to not block face
       object.children.forEach((child: any) => {
         child.material.transparent = true;
-        child.material.opacity = 0;
+        child.material.opacity = 1; 
         if (child.material.name === "Material.018") {
           monitor = child;
           child.material.color.set("#FFFFFF");
@@ -49,9 +50,11 @@ export function setCharTimeline(
       });
     }
     if (object.name === "screenlight") {
+      object.position.y = -2; // LOWERED
       object.material.transparent = true;
-      object.material.opacity = 0;
+      object.material.opacity = 1; 
       object.material.emissive.set("#B0F5EA");
+      object.material.emissiveIntensity = 2; 
       gsap.timeline({ repeat: -1, repeatRefresh: true }).to(object.material, {
         emissiveIntensity: () => intensity * 8,
         duration: () => Math.random() * 0.6,
@@ -86,21 +89,18 @@ export function setCharTimeline(
           0
         )
         .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0)
-        .to(neckBone!.rotation, { x: 0.6, delay: 2, duration: 3 }, 0)
-        .to(monitor.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0)
-        .to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0)
-        .fromTo(
-          ".what-box-in",
-          { display: "none" },
-          { display: "flex", duration: 0.1, delay: 6 },
-          0
-        )
-        .fromTo(
-          monitor.position,
-          { y: -10, z: 2 },
-          { y: 0, z: 0, delay: 1.5, duration: 3 },
-          0
-        )
+        .to(neckBone!.rotation, { x: 0.6, delay: 2, duration: 3 }, 0);
+
+      if (monitor) {
+        tl2.to(monitor.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0)
+           .fromTo(monitor.position, { y: -10, z: 2 }, { y: 0, z: 0, delay: 1.5, duration: 3 }, 0);
+      }
+      
+      if (screenLight) {
+        tl2.to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0);
+      }
+
+      tl2
         .fromTo(
           ".character-rim",
           { opacity: 1, scaleX: 1.4 },
@@ -121,26 +121,45 @@ export function setCharTimeline(
   } else {
     // Mobile Timeline (Screen width <= 1024px)
     if (character) {
-      // Landing to About
+      // Landing to About (Linear flow, no complex camera moves needed)
       tl1
-        .fromTo(character.rotation, { y: 0 }, { y: 0.5, duration: 1 }, 0)
-        .to(camera.position, { z: 40, y: 12 }, 0) // Adjusted for new framing
-        .to(".landing-container", { opacity: 0, y: "-20%", duration: 0.5 }, 0);
+        .to(".landing-container", { opacity: 0, duration: 0.5 }, 0);
 
       // About to What I Do
       tl2
         .to(camera.position, { z: 70, y: 15, duration: 6, ease: "power2.inOut" }, 0)
         .to(character.rotation, { y: 0.8, x: 0.1, duration: 4 }, 0)
-        .to(".about-section", { opacity: 0, duration: 2, delay: 3 }, 0)
-        .to(monitor.material, { opacity: 1, duration: 1, delay: 4 }, 0)
-        .to(screenLight.material, { opacity: 1, duration: 1, delay: 5 }, 0)
-        .fromTo(".what-box-in", { display: "none" }, { display: "flex", duration: 0.1, delay: 6 }, 0);
+        .to(".about-section", { opacity: 0, duration: 2, delay: 3 }, 0);
 
       // Scroll to Work/Certificates
       tl3
         .to(camera.position, { z: 120, y: 15, duration: 4 }, 0)
         .fromTo(".character-model", { y: "0%" }, { y: "-120%", duration: 4 }, 0);
     }
+  }
+  // Continuous Zoom & Rotate Effect
+  if (character) {
+    gsap.to(camera.position, {
+      z: window.innerWidth > 1024 ? 15 : 20,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".landing-section",
+        start: "top top",
+        end: window.innerWidth > 1024 ? "bottom top" : "150% top", // MUCH FASTER ON MOBILE
+        scrub: true,
+      }
+    });
+
+    gsap.to(character.rotation, {
+      y: Math.PI * 0.2, // Subtle rotation
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".landing-section",
+        start: "top top",
+        end: window.innerWidth > 1024 ? "bottom top" : "150% top", // MUCH FASTER ON MOBILE
+        scrub: true,
+      }
+    });
   }
 }
 

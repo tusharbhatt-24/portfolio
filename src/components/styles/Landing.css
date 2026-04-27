@@ -263,36 +263,68 @@ h2.landing-info-h2 {
 }
 
 @media screen and (max-width: 500px) {
+  .landing-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 80px;
+    height: auto;
+    min-height: 100vh;
+  }
+
   .character-model {
-    height: 55vh;
-    bottom: -60px; /* Push character lower to clear space */
+    position: relative;
+    height: 400px;
+    min-height: 400px;
+    width: 100vw; /* Use viewport width to be sure */
+    margin: 40px 0;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    overflow: visible;
+    display: block;
+  }
+
+  .character-model canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
   }
   
   .landing-intro {
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
     text-align: center;
     width: 100%;
+    margin-bottom: 20px;
   }
 
   .landing-intro h1 {
-    font-size: 38px;
-    line-height: 38px;
+    font-size: 42px;
+    line-height: 44px;
     letter-spacing: 2px;
   }
   
   .landing-intro h2 {
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
   .landing-info {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* PERFECT CENTER */
+    position: relative;
+    top: auto;
+    left: auto !important;
+    right: auto !important; /* RESET DESKTOP OFFSET */
+    transform: none !important;
     width: 100%;
     text-align: center;
     bottom: auto;
+    margin-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -300,20 +332,38 @@ h2.landing-info-h2 {
 
   .landing-info h3 {
     font-size: 20px;
-    letter-spacing: 1px;
-    white-space: nowrap;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .landing-info h2 {
+    margin-left: 0 !important; /* RESET DESKTOP OFFSET */
+    margin-top: 0;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+
+  .landing-h2-1, .landing-h2-2, .landing-h2-info, .landing-h2-info-1 {
+    position: static !important;
+    transform: none !important;
   }
 
   h2.landing-info-h2 {
-    font-size: 45px;
-    margin-left: 0;
+    font-size: 40px;
     width: 100%;
     justify-content: center;
+    margin-bottom: 0;
+    margin-left: 0;
+    color: #14b8a6;
   }
 
-  .landing-info h2:last-child {
-     display: none; /* Hide redundant App/Web divs on mobile */
+  h2.landing-info-h2::after {
+    display: none; /* REMOVE OVERLAY */
   }
+}
 }
 
 @media screen and (min-width: 500px) {

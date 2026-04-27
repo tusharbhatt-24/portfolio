@@ -45,7 +45,7 @@ const Scene = () => {
         1000
       );
       if (isMobile) {
-        camera.position.set(0, 16.5, 28); // Even higher to push character down
+        camera.position.set(0, 13, 30); // Lowered and pulled back slightly
       } else {
         camera.position.set(0, 13.1, 24.7);
       }
@@ -75,7 +75,8 @@ const Scene = () => {
             setTimeout(() => {
               light.turnOnLights();
               animations.startIntro();
-            }, 2500);
+              animations.floating(character); // START FLOATING
+            }, 200); // REDUCED FROM 2500
           });
           window.addEventListener("resize", () =>
             handleResize(renderer, camera, canvasDiv, character)

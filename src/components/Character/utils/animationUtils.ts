@@ -80,7 +80,16 @@ const setAnimations = (gltf: GLTF) => {
       hoverDiv.removeEventListener("mouseleave", onLeaveFace);
     };
   }
-  return { mixer, startIntro, hover };
+  function floating(character: THREE.Object3D) {
+    const initialY = character.position.y;
+    
+    gsap.ticker.add((time, deltaTime, frame) => {
+      const t = gsap.ticker.time;
+      character.position.y = initialY + Math.sin(t * 1.5) * 0.1;
+      character.rotation.z = Math.sin(t * 0.5) * 0.02;
+    });
+  }
+  return { mixer, startIntro, hover, floating };
 };
 
 const createBoneAction = (
