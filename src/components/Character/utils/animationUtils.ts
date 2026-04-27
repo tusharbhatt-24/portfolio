@@ -83,7 +83,7 @@ const setAnimations = (gltf: GLTF) => {
   function floating(character: THREE.Object3D) {
     const initialY = character.position.y;
     
-    gsap.ticker.add((time, deltaTime, frame) => {
+    gsap.ticker.add((_time, _deltaTime, _frame) => {
       const t = gsap.ticker.time;
       character.position.y = initialY + Math.sin(t * 1.5) * 0.1;
       character.rotation.z = Math.sin(t * 0.5) * 0.02;
