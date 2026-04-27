@@ -119,15 +119,27 @@ export function setCharTimeline(
         .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
     }
   } else {
+    // Mobile Timeline (Screen width <= 1024px)
     if (character) {
-      const tM2 = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".what-box-in",
-          start: "top 70%",
-          end: "bottom top",
-        },
-      });
-      tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
+      // Landing to About
+      tl1
+        .fromTo(character.rotation, { y: 0 }, { y: 0.5, duration: 1 }, 0)
+        .to(camera.position, { z: 40, y: 12 }, 0) // Adjusted for new framing
+        .to(".landing-container", { opacity: 0, y: "-20%", duration: 0.5 }, 0);
+
+      // About to What I Do
+      tl2
+        .to(camera.position, { z: 70, y: 15, duration: 6, ease: "power2.inOut" }, 0)
+        .to(character.rotation, { y: 0.8, x: 0.1, duration: 4 }, 0)
+        .to(".about-section", { opacity: 0, duration: 2, delay: 3 }, 0)
+        .to(monitor.material, { opacity: 1, duration: 1, delay: 4 }, 0)
+        .to(screenLight.material, { opacity: 1, duration: 1, delay: 5 }, 0)
+        .fromTo(".what-box-in", { display: "none" }, { display: "flex", duration: 0.1, delay: 6 }, 0);
+
+      // Scroll to Work/Certificates
+      tl3
+        .to(camera.position, { z: 120, y: 15, duration: 4 }, 0)
+        .fromTo(".character-model", { y: "0%" }, { y: "-120%", duration: 4 }, 0);
     }
   }
 }

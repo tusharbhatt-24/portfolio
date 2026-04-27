@@ -262,6 +262,60 @@ h2.landing-info-h2 {
   left: 0;
 }
 
+@media screen and (max-width: 500px) {
+  .character-model {
+    height: 55vh;
+    bottom: -60px; /* Push character lower to clear space */
+  }
+  
+  .landing-intro {
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+  }
+
+  .landing-intro h1 {
+    font-size: 38px;
+    line-height: 38px;
+    letter-spacing: 2px;
+  }
+  
+  .landing-intro h2 {
+    font-size: 16px;
+  }
+
+  .landing-info {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* PERFECT CENTER */
+    width: 100%;
+    text-align: center;
+    bottom: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .landing-info h3 {
+    font-size: 20px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  h2.landing-info-h2 {
+    font-size: 45px;
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .landing-info h2:last-child {
+     display: none; /* Hide redundant App/Web divs on mobile */
+  }
+}
+
 @media screen and (min-width: 500px) {
   .landing-circle2 {
     display: block;

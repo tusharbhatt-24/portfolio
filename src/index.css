@@ -124,9 +124,15 @@ body {
   text-transform: uppercase;
 }
 
+@media screen and (max-width: 767px) {
+  :root {
+    --cWidth: 90%;
+  }
+}
+
 @media screen and (min-width: 768px) {
   body {
-    --cWidth: 94%;
+    --cWidth: 92%;
   }
 }
 

@@ -380,10 +380,22 @@
     place-items: inherit;
     align-items: start;
     justify-content: left;
+    height: auto;
+  }
+  .what-box h2 {
+    font-size: 32px;
+    line-height: 35px;
+    margin: 30px 0;
   }
   .what-box {
     max-width: calc(100% - 25px);
     margin: 0;
+  }
+  .what-content h3 {
+    font-size: 20px;
+  }
+  .what-content p {
+    font-size: 12px;
   }
 }
 @media only screen and (min-width: 1950px) {

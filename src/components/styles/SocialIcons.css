@@ -59,8 +59,9 @@
   color: #5e5e5e;
   cursor: pointer;
   transition: 0.5s;
-  transform-origin: left bottom;
-  transform: translateX(100%) rotateZ(-90deg);
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 20px;
 }
 .resume-button:hover {
   color: #fff;

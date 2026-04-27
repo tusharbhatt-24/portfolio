@@ -331,3 +331,32 @@
     max-height: 250px;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .work-section h2 {
+    font-size: 32px;
+  }
+  .carousel-details h4 {
+    font-size: 18px;
+  }
+  .carousel-number h3 {
+    font-size: 28px;
+  }
+  .carousel-tools .tools-label {
+    font-size: 11px;
+  }
+  .carousel-tools p {
+    font-size: 12px;
+  }
+  .work-image img {
+    max-height: 200px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .work-image img {
+    max-height: 160px;
+  }
+  .carousel-content {
+    gap: 15px;
+  }
+}

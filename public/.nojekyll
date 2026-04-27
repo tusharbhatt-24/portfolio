@@ -1,0 +1,3 @@
+# This file tells GitHub Pages to skip the Jekyll build process
+# because we are deploying a pre-built Vite app.
+touch .nojekyll

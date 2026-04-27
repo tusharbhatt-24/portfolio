@@ -37,10 +37,18 @@ const Scene = () => {
       renderer.toneMappingExposure = 1;
       canvasDiv.current.appendChild(renderer.domElement);
 
-      const camera = new THREE.PerspectiveCamera(14.5, aspect, 0.1, 1000);
-      camera.position.z = 10;
-      camera.position.set(0, 13.1, 24.7);
-      camera.zoom = 1.1;
+      const isMobile = window.innerWidth <= 1024;
+      const camera = new THREE.PerspectiveCamera(
+        isMobile ? 30 : 14.5, // Wider FOV for mobile to feel more intimate
+        aspect,
+        0.1,
+        1000
+      );
+      if (isMobile) {
+        camera.position.set(0, 16.5, 28); // Even higher to push character down
+      } else {
+        camera.position.set(0, 13.1, 24.7);
+      }
       camera.updateProjectionMatrix();
 
       let headBone: THREE.Object3D | null = null;

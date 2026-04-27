@@ -27,10 +27,10 @@ const Navbar = () => {
     links.forEach((elem) => {
       let element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
-          e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
+        e.preventDefault();
+        let elem = e.currentTarget as HTMLAnchorElement;
+        let section = elem.getAttribute("data-href");
+        if (section) {
           smoother.scrollTo(section, true, "top top");
         }
       });
