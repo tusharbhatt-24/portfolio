@@ -28,8 +28,8 @@ const certificateData: Category[] = [
     name: "HACKATHONS",
     icon: <FaTrophy />,
     items: [
-      { id: 1, title: "VOYAGER BLITZ", issuer: "HACKERRANK", date: "2026.04.12", image: "/certificates/hackathon/HackerRank.jpeg" },
-      { id: 2, title: "HACKINDIA SPARK 4", issuer: "UNSTOP", date: "2026.03.20", image: "dist/certificates/hackathon/HackIndia1.jpeg" },
+      { id: 1, title: "VOYAGER BLITZ", issuer: "HACKERRANK", date: "2026.04.12", image: `${import.meta.env.BASE_URL}certificates/hackathon/HackerRank.jpeg` },
+      { id: 2, title: "HACKINDIA SPARK 4", issuer: "UNSTOP", date: "2026.03.20", image: `${import.meta.env.BASE_URL}certificates/hackathon/HackIndia1.jpeg` },
     ],
   },
   {
@@ -45,9 +45,9 @@ const certificateData: Category[] = [
     name: "SKILL_DEVELOPMENT",
     icon: <FaBook />,
     items: [
-      { id: 5, title: "AI-ML ARCHITECTURE", issuer: "EVENTDEVX", date: "2026.01.15", image: "/certificates/skill development/AI-ML.jpeg" },
-      { id: 6, title: "NEURAL_INTERFACE_WORKSHOP", issuer: "BE10X", date: "2026.02.10", image: "/certificates/skill development/Be10x.jpeg" },
-      { id: 7, title: "GENAI_PROTOCOL_WEBINAR", issuer: "IEEE EDS MAIT", date: "2026.02.28", image: "/certificates/skill development/IEEE_EDS.jpeg" },
+      { id: 5, title: "AI-ML ARCHITECTURE", issuer: "EVENTDEVX", date: "2026.01.15", image: `${import.meta.env.BASE_URL}certificates/skill development/AI-ML.jpeg` },
+      { id: 6, title: "NEURAL_INTERFACE_WORKSHOP", issuer: "BE10X", date: "2026.02.10", image: `${import.meta.env.BASE_URL}certificates/skill development/Be10x.jpeg` },
+      { id: 7, title: "GENAI_PROTOCOL_WEBINAR", issuer: "IEEE EDS MAIT", date: "2026.02.28", image: `${import.meta.env.BASE_URL}certificates/skill development/IEEE_EDS.jpeg` },
     ],
   },
 ];

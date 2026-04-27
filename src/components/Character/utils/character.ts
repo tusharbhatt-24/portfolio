@@ -28,11 +28,11 @@ const createMonitorTexture = () => {
     }
 
     // Glow Effect
-    ctx.shadowColor = "#00fbfb";
+    ctx.shadowColor = "#6ffffe";
     ctx.shadowBlur = 30;
 
     // TB Text
-    ctx.fillStyle = "#061414ff";
+    ctx.fillStyle = "#51e4e4ff";
     ctx.font = "bold 220px 'Inter', 'Segoe UI', Roboto, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -58,14 +58,14 @@ const setCharacter = (
 ) => {
   const loader = new GLTFLoader();
   const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("/draco/");
+  dracoLoader.setDecoderPath(`${import.meta.env.BASE_URL}draco/`);
   loader.setDRACOLoader(dracoLoader);
 
   const loadCharacter = () => {
     return new Promise<GLTF | null>(async (resolve, reject) => {
       try {
         const encryptedBlob = await decryptFile(
-          "/models/character.enc?v=2",
+          `${import.meta.env.BASE_URL}models/character.enc?v=2`,
           "MyCharacter12"
         );
         const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
